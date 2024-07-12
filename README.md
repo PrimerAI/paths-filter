@@ -46,7 +46,7 @@ don't allow this because they don't work on a level of individual jobs or steps.
 ## Example
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
   id: changes
   with:
     filters: |
@@ -79,12 +79,12 @@ For more scenarios see [examples](#examples) section.
 - Improved listing of matching files with `list-files: shell` and `list-files: escape` options
 - Paths expressions are now evaluated using [picomatch](https://github.com/micromatch/picomatch) library
 
-For more information, see [CHANGELOG](https://github.com/dorny/paths-filter/blob/master/CHANGELOG.md)
+For more information, see [CHANGELOG](https://github.com/PrimerAI/paths-filter/blob/master/CHANGELOG.md)
 
 ## Usage
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
   with:
     # Defines filters applied to detected changed files.
     # Each filter has a name and a list of rules.
@@ -154,14 +154,14 @@ For more information, see [CHANGELOG](https://github.com/dorny/paths-filter/blob
     # Default: ${{ github.token }}
     token: ''
 
-    # Optional parameter to override the default behavior of file matching algorithm. 
+    # Optional parameter to override the default behavior of file matching algorithm.
     # By default files that match at least one pattern defined by the filters will be included.
     # This parameter allows to override the "at least one pattern" behavior to make it so that
-    # all of the patterns have to match or otherwise the file is excluded. 
-    # An example scenario where this is useful if you would like to match all 
-    # .ts files in a sub-directory but not .md files. 
-    # The filters below will match markdown files despite the exclusion syntax UNLESS 
-    # you specify 'every' as the predicate-quantifier parameter. When you do that, 
+    # all of the patterns have to match or otherwise the file is excluded.
+    # An example scenario where this is useful if you would like to match all
+    # .ts files in a sub-directory but not .md files.
+    # The filters below will match markdown files despite the exclusion syntax UNLESS
+    # you specify 'every' as the predicate-quantifier parameter. When you do that,
     # it will only match the .ts files in the subdirectory as expected.
     #
     # backend:
@@ -193,7 +193,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         filters: |
@@ -237,7 +237,7 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
     steps:
     # For pull requests it's not necessary to checkout the code
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         filters: |
@@ -283,7 +283,7 @@ jobs:
       packages: ${{ steps.filter.outputs.changes }}
     steps:
     # For pull requests it's not necessary to checkout the code
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         filters: |
@@ -325,7 +325,7 @@ jobs:
       pull-requests: read
     steps:
     - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         filters: ... # Configure your filters
@@ -350,7 +350,7 @@ jobs:
         # This may save additional git fetch roundtrip if
         # merge-base is found within latest 20 commits
         fetch-depth: 20
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         base: develop # Change detection against merge-base with this branch
@@ -374,7 +374,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         # Use context to get the branch where commits were pushed.
@@ -408,7 +408,7 @@ jobs:
 
       # Filter to detect which files were modified
       # Changes could be, for example, automatically committed
-    - uses: dorny/paths-filter@v3
+    - uses: PrimerAI/paths-filter@main
       id: filter
       with:
         base: HEAD
@@ -423,7 +423,7 @@ jobs:
   <summary>Define filter rules in own file</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
       id: filter
       with:
         # Path to file where filters are defined
@@ -436,7 +436,7 @@ jobs:
   <summary>Use YAML anchors to reuse path expression(s) inside another rule</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
       id: filter
       with:
         # &shared is YAML anchor,
@@ -457,7 +457,7 @@ jobs:
   <summary>Consider if file was added, modified or deleted</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
       id: filter
       with:
         # Changed file can be 'added', 'modified', or 'deleted'.
@@ -483,7 +483,7 @@ jobs:
   <summary>Detect changes in folder only for some file extensions</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
       id: filter
       with:
         # This makes it so that all the patterns have to match a file for it to be
@@ -511,7 +511,7 @@ jobs:
   <summary>Passing list of modified files as command line args in Linux shell</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
   id: filter
   with:
     # Enable listing of files matching each filter.
@@ -537,7 +537,7 @@ jobs:
   <summary>Passing list of modified files as JSON array to another action</summary>
 
 ```yaml
-- uses: dorny/paths-filter@v3
+- uses: PrimerAI/paths-filter@main
   id: filter
   with:
     # Enable listing of files matching each filter.
@@ -560,8 +560,8 @@ jobs:
 
 ## See also
 
-- [test-reporter](https://github.com/dorny/test-reporter) - Displays test results from popular testing frameworks directly in GitHub
+- [test-reporter](https://github.com/PrimerAI/test-reporter) - Displays test results from popular testing frameworks directly in GitHub
 
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](https://github.com/dorny/paths-filter/blob/master/LICENSE)
+The scripts and documentation in this project are released under the [MIT License](https://github.com/PrimerAI/paths-filter/blob/master/LICENSE)
